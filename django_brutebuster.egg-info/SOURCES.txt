@@ -1,9 +1,9 @@
 setup.py
-BruteBuster/__init__.py
-BruteBuster/admin.py
-BruteBuster/decorators.py
-BruteBuster/middleware.py
-BruteBuster/models.py
+brutebuster/__init__.py
+brutebuster/admin.py
+brutebuster/decorators.py
+brutebuster/middleware.py
+brutebuster/models.py
 django_brutebuster.egg-info/PKG-INFO
 django_brutebuster.egg-info/SOURCES.txt
 django_brutebuster.egg-info/dependency_links.txt
