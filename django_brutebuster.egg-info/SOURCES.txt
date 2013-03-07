@@ -1,6 +1,9 @@
+README
+setup.cfg
 setup.py
 brutebuster/__init__.py
 brutebuster/admin.py
+brutebuster/backends.py
 brutebuster/decorators.py
 brutebuster/middleware.py
 brutebuster/models.py

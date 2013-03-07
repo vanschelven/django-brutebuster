@@ -21,6 +21,7 @@ If you don't see any errors, then congrats! The hard part is over.
 
 1. Add brutebuster to your `INSTALLED_APPS` list in settings.py
 2. Add `brutebuster.middleware.RequestMiddleware` to your `MIDDLEWARE_CLASSES` in settings.py
+        Make sure to add it before your authenticationMiddleware, or the IP addresses won't be available in time
 3. Run `python manage.py syncdb` to add the brutebuster table to your database
 4. Add AUTHENTICATION_BACKENDS = ('brutebuster.backends.BruteBusterModelBackend',)
 5. That's it! Don't forget to restart your server, if needed.
