@@ -19,5 +19,19 @@ def get_request():
 
 class RequestMiddleware(object):
     """Provides access to the request object via thread locals"""
+
     def process_request(self, request):
+        # the cleanup (for tests only) is done in LSTestCaseMixin
+        # since there is no easy, always called, mirror-image of 'process_request'
+
         _thread_locals.request = request
+
+    def process_response(self, request, response):
+        # we cannot rely on process_request being succesful, so doublecheck w/ hasattr
+
+        if hasattr(_thread_locals, 'request'):
+            del _thread_locals.request
+
+        return response
+
+
