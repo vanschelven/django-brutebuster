@@ -2,6 +2,9 @@
 
 """Decorators used by brutebuster"""
 
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext
+
 from brutebuster.models import FailedAttempt
 from brutebuster.middleware import get_request
 
@@ -41,7 +44,8 @@ def protect_and_serve(auth_func):
                     # of too many recent failures
                     fa.failures += 1
                     fa.save()
-                    return None
+                    raise ValidationError(ugettext(u"You have been blocked from logging in after a large number of " +
+                                                   "failed attempts. Wait 2 hours or contact us to reset the counter."))
             else:
                 # the block interval is over, so let's start
                 # with a clean sheet
