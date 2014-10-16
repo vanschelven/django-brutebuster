@@ -12,8 +12,13 @@ except ImportError:
 
 _thread_locals = local()
 
+def set_request(request):
+    _thread_locals.request = request
 
 def get_request():
+    # In cases where the request is non-existent (i.e. testing, shell), this
+    # returns None. Callers are responsible for checking this condition, and
+    # adapting as necessary.
     return getattr(_thread_locals, 'request', None)
 
 
@@ -24,7 +29,7 @@ class RequestMiddleware(object):
         # the cleanup (for tests only) is done in LSTestCaseMixin
         # since there is no easy, always called, mirror-image of 'process_request'
 
-        _thread_locals.request = request
+        set_request(request)
 
     def process_response(self, request, response):
         # we cannot rely on process_request being succesful, so doublecheck w/ hasattr

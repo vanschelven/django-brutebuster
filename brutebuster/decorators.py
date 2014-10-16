@@ -32,7 +32,7 @@ def protect_and_serve(auth_func):
         request = get_request()
         if request:
             # try to get the remote address from thread locals
-            IP_ADDR = request.META.get('REMOTE_ADDR', None)
+            IP_ADDR = getattr(request, 'META', {}).get('REMOTE_ADDR', None)
         else:
             IP_ADDR = None
 
