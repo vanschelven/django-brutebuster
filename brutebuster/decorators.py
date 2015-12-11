@@ -25,9 +25,9 @@ def protect_and_serve(auth_func):
         This is the wrapper that gets installed around the default
         authentication function.
         """
-        user = kwargs.get('username', '')
-        if not user:
+        if 'username' not in kwargs:
             raise ValueError('brutebuster cannot work with authenticate functions that do not include "username" as an argument')
+        user = kwargs['username']
 
         request = get_request()
         if request:
